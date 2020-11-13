@@ -22,6 +22,7 @@ export class Logger {
           filename: "./logs/error.log",
           level: "error",
           format: winston.format.combine(
+            winston.format.timestamp(),
             winston.format.errors({ stack: true }),
             winston.format.metadata(),
             winston.format.json()
@@ -30,6 +31,7 @@ export class Logger {
         new winston.transports.File({
           filename: "./logs/combined.log",
           format: winston.format.combine(
+            winston.format.timestamp(),
             winston.format.errors({ stack: true }),
             winston.format.metadata(),
             winston.format.json()
