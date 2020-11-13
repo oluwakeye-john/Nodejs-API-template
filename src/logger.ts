@@ -1,23 +1,15 @@
 import winston, { Logger as Winston } from "winston";
+import { Env } from "./env";
+
+const env = Env();
 
 export class Logger {
   private logger: Winston;
-
   constructor(name: string) {
     this.logger = winston.createLogger({
       level: "info",
       defaultMeta: { service: name },
       transports: [
-        new winston.transports.Console({
-          format: winston.format.combine(
-            winston.format.timestamp(),
-            winston.format.metadata({
-              fillExcept: ["timestamp", "service", "level", "message"],
-            }),
-            winston.format.prettyPrint(),
-            winston.format.colorize()
-          ),
-        }),
         new winston.transports.File({
           filename: "./logs/error.log",
           level: "error",
@@ -39,6 +31,21 @@ export class Logger {
         }),
       ],
     });
+
+    if (env.NODE_ENV !== "production") {
+      this.logger.add(
+        new winston.transports.Console({
+          format: winston.format.combine(
+            winston.format.timestamp(),
+            winston.format.metadata({
+              fillExcept: ["timestamp", "service", "level", "message"],
+            }),
+            winston.format.prettyPrint(),
+            winston.format.colorize()
+          ),
+        })
+      );
+    }
   }
 
   debug(log: string, metadata?: any) {
@@ -47,10 +54,6 @@ export class Logger {
 
   info(log: string, metadata?: any) {
     this.logger.info(log, metadata);
-  }
-
-  warn(log: string, metadata?: any) {
-    this.logger.warn(log, metadata);
   }
 
   error(log: string, metadata?: any) {

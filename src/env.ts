@@ -3,7 +3,7 @@ interface envType {
   PORT: string;
 }
 
-const Env = (): envType => {
+export const Env = (): envType => {
   return {
     NODE_ENV: process.env.NODE_ENV ?? "",
     PORT: process.env.PORT ?? "",
