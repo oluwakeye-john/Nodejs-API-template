@@ -1,6 +1,7 @@
 import express from "express";
 import morgan from "morgan";
 import dotenv from "dotenv";
+import { rootLogger } from "./logger";
 dotenv.config();
 
 const app = express();
@@ -14,5 +15,5 @@ app.get("/", (req: express.Request, res: express.Response) => {
 const PORT = process.env.PORT;
 
 app.listen(PORT, () => {
-  console.log(`listening on ${PORT}`);
+  rootLogger.info(`Listening on ${PORT}`);
 });
