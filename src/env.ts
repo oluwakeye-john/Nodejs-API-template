@@ -1,5 +1,5 @@
 interface envType {
-  NODE_ENV: string;
+  NODE_ENV: "production" | "development";
   PORT: string;
 }
 
