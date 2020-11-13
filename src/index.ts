@@ -1,5 +1,7 @@
 import express from "express";
 import morgan from "morgan";
+import dotenv from "dotenv";
+dotenv.config();
 
 const app = express();
 
@@ -9,6 +11,8 @@ app.get("/", (req: express.Request, res: express.Response) => {
   res.status(200).send("string");
 });
 
-app.listen(5000, () => {
-  console.log("listening");
+const PORT = process.env.PORT;
+
+app.listen(PORT, () => {
+  console.log(`listening on ${PORT}`);
 });
