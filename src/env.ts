@@ -19,5 +19,4 @@ export const validateEnv = () => {
       throw Error(`${item} is required`);
     }
   });
-  console.log("Env valid");
 };
