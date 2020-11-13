@@ -21,9 +21,9 @@
   },
   "scripts": {
     "start": "nodemon index",
-    "dev": "nodemon ",
+    "dev": "nodemon",
     "tsc": "tsc --noEmit",
     "format": "prettier --write src/**/*.*",
-    "build": "rm-rf build/ tsc"
+    "build": "echo \"Building...\" && rm -rf build/ && tsc"
   }
 }

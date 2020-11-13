@@ -64,5 +64,3 @@ export class Logger {
 }
 
 export const rootLogger = new Logger("root");
-
-rootLogger.error("Lask");
