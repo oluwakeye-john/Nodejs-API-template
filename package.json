@@ -21,9 +21,9 @@
   },
   "scripts": {
     "start": "nodemon index",
-    "dev": "nodemon -e ts -x ts-node ./src/index.ts ",
-    "tsc": "tsc",
+    "dev": "nodemon ",
+    "tsc": "tsc --noEmit",
     "format": "prettier --write src/**/*.*",
-    "build": "npm run tsc && babel src -d dist --extensions \".ts\""
+    "build": "tsc"
   }
 }
